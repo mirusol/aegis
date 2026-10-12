@@ -1,0 +1,7 @@
+---
+# Switches for the CIS Windows remediations.
+cis_win_password_history: true
+cis_win_disable_admin: true
+cis_win_firewall_domain: true
+
+cis_win_password_history_count: 24

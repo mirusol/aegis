@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  role_name: cis_baseline
+  namespace: aegis
+  author: Miruna Solomon
+  description: Applies a subset of the CIS Benchmarks (hardening) on Windows.
+  license: MIT
+  min_ansible_version: "2.14"
+  platforms:
+    - name: Windows
+      versions: [all]
+  galaxy_tags: [security, cis, hardening, windows]
+
+dependencies: []

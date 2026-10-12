@@ -1,0 +1,42 @@
+# Aegis configuration (example). Copy to config/config.yaml and adjust.
+
+database:
+  path: "data/aegis.db"
+
+hashing:
+  algorithm: "sha256"        # sha256 | sha512 | blake2b
+  chunk_size: 65536
+  trust_mtime: false         # true = skip re-hashing when size+mtime match (fast on big folders)
+
+monitoring:
+  mode: "polling"            # polling | realtime (realtime requires watchdog)
+  interval_seconds: 60       # polling only
+  paths:
+    - "C:/Windows/System32/drivers/etc"   # example: the hosts file
+  exclude:
+    - "*.tmp"
+    - "*.log"
+
+compliance:
+  ruleset: "auto"            # auto -> cis_rules/windows
+  fail_on: "high"
+
+alerting:
+  channels:
+    - type: "console"
+    - type: "logfile"
+      path: "data/aegis.log"
+    # - type: "email"
+    #   smtp_host: "smtp.example.com"
+    #   smtp_port: 587
+    #   use_tls: true
+    #   username: "alerts@example.com"
+    #   password: "<set via your own secret store>"
+    #   from: "aegis@example.com"
+    #   to: "security@example.com"
+
+integrity:
+  enabled: true
+  # key: "<secret>"          # set -> HMAC seal; otherwise tamper-evident only
+
+log_level: "INFO"

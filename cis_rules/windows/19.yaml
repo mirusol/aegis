@@ -1,0 +1,187 @@
+metadata:
+  os: windows
+  section: '19'
+rules:
+- id: 19.5.1.1
+  title: Ensure Turn off toast notifications on the lock screen is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\Currentversion\Pushnotifications
+    name: NoToastApplicationNotificationOnLockScreen
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\Currentversion\Pushnotifications'
+      /v NoToastApplicationNotificationOnLockScreen /t REG_DWORD /d 1 /f
+- id: 19.6.6.1.1
+  title: Ensure Turn off Help Experience Improvement Program is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Assistance\Client\1.0
+    name: NoImplicitFeedback
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Assistance\Client\1.0'
+      /v NoImplicitFeedback /t REG_DWORD /d 1 /f
+- id: 19.7.5.1
+  title: Ensure Do not preserve zone information in file attachments is set to Disabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments
+    name: SaveZoneInformation
+    value: 2
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments'
+      /v SaveZoneInformation /t REG_DWORD /d 2 /f
+- id: 19.7.5.2
+  title: Ensure Notify antivirus programs when opening attachments is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Microsoft\Windows\Currentversion\Policies\Attachments
+    name: ScanWithAntiVirus
+    value: 3
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Microsoft\Windows\Currentversion\Policies\Attachments'
+      /v ScanWithAntiVirus /t REG_DWORD /d 3 /f
+- id: 19.7.8.1
+  title: Ensure Configure Windows spotlight on lock screen is set to Disabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent
+    name: ConfigureWindowsSpotlight
+    value: 2
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent'
+      /v ConfigureWindowsSpotlight /t REG_DWORD /d 2 /f
+- id: 19.7.8.2
+  title: Ensure Do not suggest third-party content in Windows spotlight is set to
+    Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableThirdPartySuggestions
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent'
+      /v DisableThirdPartySuggestions /t REG_DWORD /d 1 /f
+- id: 19.7.8.3
+  title: Ensure Do not use diagnostic data for tailored experiences is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableTailoredExperiencesWithDiagnosticData
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent'
+      /v DisableTailoredExperiencesWithDiagnosticData /t REG_DWORD /d 1 /f
+- id: 19.7.8.4
+  title: Ensure Turn off all Windows spotlight features is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent
+    name: DisableWindowsSpotlightFeatures
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\CloudContent'
+      /v DisableWindowsSpotlightFeatures /t REG_DWORD /d 1 /f
+- id: 19.7.8.5
+  title: Ensure Turn off Spotlight collection on Desktop is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+    name: DisableSpotlightCollectionOnDesktop
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\SOFTWARE\Policies\Microsoft\Windows\CloudContent'
+      /v DisableSpotlightCollectionOnDesktop /t REG_DWORD /d 1 /f
+- id: 19.7.26.1
+  title: Ensure Prevent users from sharing files within their profile. is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoInplaceSharing
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoInplaceSharing /t REG_DWORD /d 1 /f
+- id: 19.7.38.1
+  title: Ensure 'Turn off Windows Copilot' is set to 'Enabled'
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\WindowsCopilot
+    name: TurnOffWindowsCopilot
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\WindowsCopilot'
+      /v TurnOffWindowsCopilot /t REG_DWORD /d 1 /f
+- id: 19.7.42.1
+  title: Ensure Always install with elevated privileges is set to Disabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windows\Installer
+    name: AlwaysInstallElevated
+    value: 0
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windows\Installer'
+      /v AlwaysInstallElevated /t REG_DWORD /d 0 /f
+- id: 19.7.44.2.1
+  title: Ensure Prevent Codec Download is set to Enabled
+  section: '19'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKU\{{ item }}\Software\Policies\Microsoft\Windowsmediaplayer
+    name: PreventCodecDownload
+    value: 1
+  remediation:
+    powershell: reg add 'HKU\{{ item }}\Software\Policies\Microsoft\Windowsmediaplayer'
+      /v PreventCodecDownload /t REG_DWORD /d 1 /f

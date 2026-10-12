@@ -1,0 +1,16 @@
+127.0.0.1       localhost
+::1             localhost
+127.0.0.1       activate.local
+0.0.0.0 banca.example.com
+0.0.0.0 test.example.com
+0.0.0.0 test.example.com
+0.0.0.0 test.example.com
+0.0.0.0 test.example.com
+
+127.0.0.1 malicious-site.com
+
+127.0.0.1 evil.com
+
+127.0.0.1 evil.com
+
+127.0.0.1 evil.com

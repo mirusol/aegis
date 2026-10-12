@@ -1,0 +1,186 @@
+metadata:
+  os: windows
+  benchmark: "CIS Microsoft Windows 11 Enterprise Benchmark"
+  version: "1.0.0 (subset extins)"
+
+rules:
+  # ── Accounts ──────────────────────────────────────────────────
+  - id: "2.3.1.1"
+    title: "Ensure 'Administrator account status' is set to Disabled"
+    section: "2.3 Security Options"
+    severity: "high"
+    level: 1
+    profile: "workstation"
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-LocalUser -Name Administrator).Enabled\""
+      expect_contains: "False"
+    remediation:
+      ansible_task: "cis_baseline/win_disable_admin"
+      risky: true
+      powershell: |-
+        Disable-LocalUser -Name Administrator
+
+  - id: "2.3.1.2"
+    title: "Ensure 'Guest account status' is set to Disabled"
+    section: "2.3 Security Options"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-LocalUser -Name Guest).Enabled\""
+      expect_contains: "False"
+    remediation:
+      ansible_task: "cis_baseline/win_disable_guest"
+      powershell: |-
+        Disable-LocalUser -Name Guest
+
+  # ── Firewall (all 3 profiles) ────────────────────────
+  - id: "9.1.1"
+    title: "Ensure 'Windows Firewall: Domain: Firewall state' is set to On"
+    section: "9.1 Domain Profile"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-NetFirewallProfile -Name Domain).Enabled\""
+      expect_contains: "True"
+    remediation:
+      ansible_task: "cis_baseline/win_firewall_domain"
+      powershell: |-
+        Set-NetFirewallProfile -Name Domain -Enabled True
+
+  - id: "9.2.1"
+    title: "Ensure 'Windows Firewall: Private: Firewall state' is set to On"
+    section: "9.2 Private Profile"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-NetFirewallProfile -Name Private).Enabled\""
+      expect_contains: "True"
+    remediation:
+      ansible_task: "cis_baseline/win_firewall_private"
+      powershell: |-
+        Set-NetFirewallProfile -Name Private -Enabled True
+
+  - id: "9.3.1"
+    title: "Ensure 'Windows Firewall: Public: Firewall state' is set to On"
+    section: "9.3 Public Profile"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-NetFirewallProfile -Name Public).Enabled\""
+      expect_contains: "True"
+    remediation:
+      ansible_task: "cis_baseline/win_firewall_public"
+      powershell: |-
+        Set-NetFirewallProfile -Name Public -Enabled True
+
+  # ── Insecure protocols / services ───────────────────────────
+  - id: "18.3.1"
+    title: "Ensure SMBv1 client/server is disabled"
+    section: "18.3 MS Security Guide"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-SmbServerConfiguration).EnableSMB1Protocol\""
+      expect_contains: "False"
+    remediation:
+      ansible_task: "cis_baseline/win_disable_smb1"
+      powershell: |-
+        Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
+
+  # ── Security options (registry) ─────────────────────────
+  - id: "2.3.7.1"
+    title: "Ensure User Account Control (UAC) is enabled (EnableLUA=1)"
+    section: "2.3.17 User Account Control"
+    severity: "high"
+    level: 1
+    check:
+      type: "registry"
+      key: "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+      name: "EnableLUA"
+      value: 1
+    remediation:
+      ansible_task: "cis_baseline/win_enable_uac"
+      powershell: |-
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name EnableLUA -PropertyType DWord -Value 1 -Force | Out-Null
+
+  - id: "2.3.11.7"
+    title: "Ensure 'Do not store LAN Manager hash value' is enabled (NoLMHash=1)"
+    section: "2.3.11 Network Security"
+    severity: "medium"
+    level: 1
+    check:
+      type: "registry"
+      key: "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa"
+      name: "NoLMHash"
+      value: 1
+    remediation:
+      ansible_task: "cis_baseline/win_no_lm_hash"
+      powershell: |-
+        New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name NoLMHash -PropertyType DWord -Value 1 -Force | Out-Null
+
+  - id: "18.9.65.1"
+    title: "Ensure Remote Desktop connections are denied (fDenyTSConnections=1)"
+    section: "18.9 Remote Desktop Services"
+    severity: "medium"
+    level: 1
+    profile: "workstation"
+    check:
+      type: "registry"
+      key: "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server"
+      name: "fDenyTSConnections"
+      value: 1
+    remediation:
+      ansible_task: "cis_baseline/win_deny_rdp"
+      risky: true
+      powershell: |-
+        Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server' -Name fDenyTSConnections -Value 1
+
+  - id: "18.9.8.1"
+    title: "Ensure AutoRun is disabled for all drives (NoDriveTypeAutoRun=255)"
+    section: "18.9 AutoPlay Policies"
+    severity: "medium"
+    level: 1
+    check:
+      type: "registry"
+      key: "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+      name: "NoDriveTypeAutoRun"
+      value: 255
+    remediation:
+      ansible_task: "cis_baseline/win_disable_autorun"
+      powershell: |-
+        if (-not (Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer')) { New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force | Out-Null }
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name NoDriveTypeAutoRun -PropertyType DWord -Value 255 -Force | Out-Null
+
+  # ── Antivirus / execution ─────────────────────────────────────
+  - id: "18.10.43.1"
+    title: "Ensure Microsoft Defender real-time protection is enabled"
+    section: "18.10 Microsoft Defender Antivirus"
+    severity: "high"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"(Get-MpPreference).DisableRealtimeMonitoring\""
+      expect_contains: "False"
+    remediation:
+      ansible_task: "cis_baseline/win_defender_realtime"
+      powershell: |-
+        Set-MpPreference -DisableRealtimeMonitoring $false
+
+  - id: "L.1"
+    title: "Ensure PowerShell execution policy is not Unrestricted"
+    section: "Local Hardening"
+    severity: "medium"
+    level: 1
+    check:
+      type: "command"
+      command: "powershell -NoProfile -Command \"Get-ExecutionPolicy\""
+      expect_not_contains: "Unrestricted"
+    remediation:
+      powershell: |-
+        Set-ExecutionPolicy RemoteSigned -Scope LocalMachine -Force

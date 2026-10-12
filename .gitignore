@@ -1,0 +1,36 @@
+# Runtime data (fingerprint database, generated reports)
+/data/*
+!/data/.gitkeep
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration (keep only the *.example.yaml files; the rest may contain passwords/personal paths)
+config/*.yaml
+!config/*.example.yaml
+config/monitored_paths.yaml
+
+# Generated reports
+reports/
+*.report.json
+*.report.html
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Ansible
+ansible/inventory/hosts.ini
+*.retry
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

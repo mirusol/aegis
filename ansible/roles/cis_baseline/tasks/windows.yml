@@ -1,0 +1,22 @@
+- name: "1.1.1 | win_password_history | Enforce password history >= 24"
+ 
+  community.windows.win_security_policy:
+    section: System Access
+    key: PasswordHistorySize
+    value: "{{ cis_win_password_history_count }}"
+  when: cis_win_password_history | default(false)
+  tags: [windows, password, "1.1.1"]
+
+- name: "2.3.1.1 | win_disable_admin | Disable the local Administrator account"
+  ansible.windows.win_user:
+    name: Administrator
+    account_disabled: true
+  when: cis_win_disable_admin | default(false)
+  tags: [windows, accounts, "2.3.1.1"]
+
+- name: "9.1.1 | win_firewall_domain | Firewall enabled on the Domain profile"
+  community.windows.win_firewall:
+    profiles: [Domain]
+    state: enabled
+  when: cis_win_firewall_domain | default(false)
+  tags: [windows, firewall, "9.1.1"]

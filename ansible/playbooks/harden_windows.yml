@@ -1,0 +1,5 @@
+---
+- name: Apply CIS hardening on the Windows hosts
+  hosts: windows
+  roles:
+    - role: cis_baseline

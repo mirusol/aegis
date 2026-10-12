@@ -1,0 +1,159 @@
+metadata:
+  os: windows
+  section: '1'
+rules:
+- id: 1.1.1
+  title: Ensure Enforce password history is set to 24 or more passwords.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: PasswordHistorySize
+    value: 24
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v PasswordHistorySize
+      /t REG_DWORD /d 24 /f
+- id: 1.1.2
+  title: Ensure Maximum password age is set to 365 or fewer days but not 0.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: MaximumPasswordAge
+    value: 365
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v MaximumPasswordAge
+      /t REG_DWORD /d 365 /f
+- id: 1.1.3
+  title: Ensure Minimum password age is set to 1 or more days.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: MinimumPasswordAge
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v MinimumPasswordAge
+      /t REG_DWORD /d 1 /f
+- id: 1.1.4
+  title: Ensure Minimum password length is set to 14 or more characters.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: MinimumPasswordLength
+    value: 14
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v MinimumPasswordLength
+      /t REG_DWORD /d 14 /f
+- id: 1.1.5
+  title: Ensure Password must meet complexity requirements is set to Enabled.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: PasswordComplexity
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v PasswordComplexity
+      /t REG_DWORD /d 1 /f
+- id: 1.1.6
+  title: Ensure Relax minimum password length limits is set to Enabled.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\CurrentControlSet\Control\SAM
+    name: RelaxMinimumPasswordLengthLimits
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\System\CurrentControlSet\Control\SAM' /v RelaxMinimumPasswordLengthLimits
+      /t REG_DWORD /d 1 /f
+- id: 1.1.7
+  title: Ensure Store passwords using reversible encryption is set to Disabled.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: ClearTextPassword
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v ClearTextPassword
+      /t REG_DWORD /d 0 /f
+- id: 1.2.1
+  title: Ensure Account lockout duration is set to 15 or more minutes.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout
+    name: LockoutDuration
+    value: 15
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout'
+      /v LockoutDuration /t REG_DWORD /d 15 /f
+- id: 1.2.2
+  title: Ensure Account lockout threshold is set to 5 or fewer invalid logon attempt(s),
+    but not 0.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout
+    name: LockoutBadCount
+    value: 5
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout'
+      /v LockoutBadCount /t REG_DWORD /d 5 /f
+- id: 1.2.3
+  title: Ensure Allow Administrator account lockout is set to Enabled.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout
+    name: AllowAdministratorLockout
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout'
+      /v AllowAdministratorLockout /t REG_DWORD /d 1 /f
+- id: 1.2.4
+  title: Ensure Reset account lockout counter after is set to 15 or more minutes.
+  section: '1'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout
+    name: ResetLockoutCount
+    value: 15
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\RemoteAccess\Parameters\AccountLockout'
+      /v ResetLockoutCount /t REG_DWORD /d 15 /f

@@ -1,0 +1,4417 @@
+metadata:
+  os: windows
+  section: '18'
+rules:
+- id: 18.1.1.1
+  title: Ensure Prevent enabling lock screen camera is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Personalization
+    name: NoLockScreenCamera
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Personalization'
+      /v NoLockScreenCamera /t REG_DWORD /d 1 /f
+- id: 18.1.1.2
+  title: Ensure Prevent enabling lock screen slide show is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Personalization
+    name: NoLockScreenSlideshow
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Personalization'
+      /v NoLockScreenSlideshow /t REG_DWORD /d 1 /f
+- id: 18.1.2.2
+  title: Ensure Allow users to enable online speech recognition services is set to
+    Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\InputPersonalization
+    name: AllowInputPersonalization
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\InputPersonalization' /v
+      AllowInputPersonalization /t REG_DWORD /d 0 /f
+- id: 18.1.3
+  title: Ensure Allow Online Tips is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer
+    name: AllowOnlineTips
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
+      /v AllowOnlineTips /t REG_DWORD /d 0 /f
+- id: 18.4.1
+  title: Ensure Apply UAC restrictions to local accounts on network logons is set
+    to Enabled.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\System
+    name: LocalAccountTokenFilterPolicy
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\System'
+      /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 0 /f
+- id: 18.4.2
+  title: 18.4.2
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Print
+    name: RpcAuthnLevelPrivacyEnabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Print' /v RpcAuthnLevelPrivacyEnabled
+      /t REG_DWORD /d 1 /f
+- id: 18.4.3
+  title: Ensure Configure SMB v1 client driver is set to Enabled Disable driver recommended
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\mrxsmb10
+    name: Start
+    value: 4
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\mrxsmb10' /v Start
+      /t REG_DWORD /d 4 /f
+- id: 18.4.4
+  title: Ensure Configure SMB v1 server is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters
+    name: SMB1
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters'
+      /v SMB1 /t REG_DWORD /d 0 /f
+- id: 18.4.5
+  title: Ensure 'Enable Certificate Padding' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Cryptography\Wintrust\Config
+    name: EnableCertPaddingCheck
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Cryptography\Wintrust\Config' /v
+      EnableCertPaddingCheck /t REG_DWORD /d 1 /f
+- id: 18.4.6
+  title: Ensure Enable Structured Exception Handling Overwrite Protection SEHOP is
+    set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel
+    name: DisableExceptionChainValidation
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel'
+      /v DisableExceptionChainValidation /t REG_DWORD /d 0 /f
+- id: 18.5.1
+  title: Ensure MSS AutoAdminLogon Enable Automatic Logon not recommended is set to
+    Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows Nt\CurrentVersion\Winlogon
+    name: AutoAdminLogon
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows Nt\CurrentVersion\Winlogon'
+      /v AutoAdminLogon /t REG_DWORD /d 0 /f
+- id: 18.5.7
+  title: Ensure MSS NoNameReleaseOnDemand Allow the computer to ignore NetBIOS name
+    release requests except from WINS servers is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Services\Netbt\Parameters
+    name: NoNameReleaseOnDemand
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Services\Netbt\Parameters'
+      /v NoNameReleaseOnDemand /t REG_DWORD /d 1 /f
+- id: 18.5.8
+  title: 'Ensure ''MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure
+    Default Gateway addresses'' is set to ''Disabled'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Services\Tcpip\Parameters
+    name: PerformRouterDiscovery
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Services\Tcpip\Parameters'
+      /v PerformRouterDiscovery /t REG_DWORD /d 0 /f
+- id: 18.5.9
+  title: Ensure MSS SafeDllSearchMode Enable Safe DLL search mode recommended is set
+    to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Control\Session Manager
+    name: SafeDllSearchMode
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Control\Session Manager' /v
+      SafeDllSearchMode /t REG_DWORD /d 1 /f
+- id: 18.5.10
+  title: Ensure MSS ScreenSaverGracePeriod The time in seconds before the screen saver
+    grace period expires 0 recommended is set to Enabled 5 or fewer seconds
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows Nt\Currentversion\Winlogon
+    name: ScreenSaverGracePeriod
+    value: 5
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows Nt\Currentversion\Winlogon'
+      /v ScreenSaverGracePeriod /t REG_SZ /d 5 /f
+- id: 18.5.11
+  title: Ensure MSS TcpMaxDataRetransmissions IPv6 How many times unacknowledged data
+    is retransmitted is set to Enabled 3
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Services\Tcpip6\Parameters
+    name: TcpMaxDataRetransmissions
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Services\Tcpip6\Parameters'
+      /v TcpMaxDataRetransmissions /t REG_DWORD /d 3 /f
+- id: 18.5.12
+  title: Ensure MSS TcpMaxDataRetransmissions How many times unacknowledged data is
+    retransmitted is set to Enabled 3
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Services\Tcpip\Parameters
+    name: TcpMaxDataRetransmissions
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Services\Tcpip\Parameters'
+      /v TcpMaxDataRetransmissions /t REG_DWORD /d 3 /f
+- id: 18.5.13
+  title: Ensure MSS WarningLevel Percentage threshold for the security event log at
+    which the system will generate a warning is set to Enabled 90 or less
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Services\Eventlog\Security
+    name: WarningLevel
+    value: 90
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Services\Eventlog\Security'
+      /v WarningLevel /t REG_DWORD /d 90 /f
+- id: 18.6.4.1
+  title: 'Ensure Configure DNS over HTTPS (DoH) name resolution is set to Enabled:
+    Allow DoH or higher.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient
+    name: DoHPolicy
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient' /v
+      DoHPolicy /t REG_DWORD /d 2 /f
+- id: 18.6.4.2
+  title: 'Ensure ''Configure NetBIOS settings'' is set to ''Enabled: Disable NetBIOS
+    name resolution on public networks''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient
+    name: EnableNetbios
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient' /v
+      EnableNetbios /t REG_DWORD /d 2 /f
+- id: 18.6.4.3
+  title: Ensure Turn off multicast name resolution is set to Enabled.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\DNSClient
+    name: EnableMulticast
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\DNSClient' /v
+      EnableMulticast /t REG_DWORD /d 0 /f
+- id: 18.6.5.1
+  title: Ensure Enable Font Providers is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\System
+    name: EnableFontProviders
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\System' /v EnableFontProviders
+      /t REG_DWORD /d 0 /f
+- id: 18.6.8.1
+  title: Ensure Enable insecure guest logons is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Lanmanworkstation
+    name: AllowInsecureGuestAuth
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Lanmanworkstation'
+      /v AllowInsecureGuestAuth /t REG_DWORD /d 0 /f
+- id: 18.6.9.1
+  title: Ensure Turn on Mapper IO LLTDIO driver is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Lltd
+    name: AllowLLTDIOOndomain
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Lltd' /v AllowLLTDIOOndomain
+      /t REG_DWORD /d 0 /f
+- id: 18.6.9.2
+  title: Ensure Turn on Responder RSPNDR driver is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Lltd
+    name: AllowRspndrOnDomain
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Lltd' /v AllowRspndrOnDomain
+      /t REG_DWORD /d 0 /f
+- id: 18.6.10.2
+  title: Ensure Turn off Microsoft Peer-to-Peer Networking Services is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Peernet
+    name: Disabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Peernet' /v Disabled /t
+      REG_DWORD /d 1 /f
+- id: 18.6.11.2
+  title: Ensure Prohibit installation and configuration of Network Bridge on your
+    DNS domain network is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Network Connections
+    name: NC_AllowNetBridge_NLA
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Network Connections'
+      /v NC_AllowNetBridge_NLA /t REG_DWORD /d 0 /f
+- id: 18.6.11.3
+  title: Ensure Prohibit use of Internet Connection Sharing on your DNS domain network
+    is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Network Connections
+    name: NC_ShowSharedAccessUI
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Network Connections'
+      /v NC_ShowSharedAccessUI /t REG_DWORD /d 0 /f
+- id: 18.6.11.4
+  title: Ensure Require domain users to elevate when setting a networks location is
+    set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Network Connections
+    name: NC_StdDomainUserSetLocation
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Network Connections'
+      /v NC_StdDomainUserSetLocation /t REG_DWORD /d 1 /f
+- id: 18.6.19.2.1
+  title: Disable IPv6 Ensure TCPIP6 Parameter DisabledComponents is set to 0xff 255
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\CurrentControlSet\Services\TCPIP6\Parameters
+    name: DisabledComponents
+    value: 255
+  remediation:
+    powershell: reg add 'HKLM\System\CurrentControlSet\Services\TCPIP6\Parameters'
+      /v DisabledComponents /t REG_DWORD /d 255 /f
+- id: 18.6.20.1
+  title: Ensure Configuration of wireless settings using Windows Connect Now is set
+    to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Wcn\Registrars
+    name: EnableRegistrars
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Wcn\Registrars'
+      /v EnableRegistrars /t REG_DWORD /d 0 /f
+- id: 18.6.20.2
+  title: Ensure Prohibit access of the Windows Connect Now wizards is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Wcn\Ui
+    name: DisableWcnUi
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Wcn\Ui' /v DisableWcnUi
+      /t REG_DWORD /d 1 /f
+- id: 18.6.21.1
+  title: 'Ensure ''Minimize the number of simultaneous connections to the Internet
+    or a Windows Domain'' is set to ''Enabled: 3 = Prevent Wi-Fi when on Ethernet'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy
+    name: fMinimizeConnections
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy'
+      /v fMinimizeConnections /t REG_DWORD /d 3 /f
+- id: 18.6.21.2
+  title: Ensure 'Prohibit connection to non-domain networks when connected to domain
+    authenticated network' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy
+    name: fBlockNonDomain
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Wcmsvc\Grouppolicy'
+      /v fBlockNonDomain /t REG_DWORD /d 1 /f
+- id: 18.6.23.2.1
+  title: Ensure 'Allow Windows to automatically connect to suggested open hotspots,
+    to networks shared by contacts, and to hotspots offering paid services' is set
+    to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config
+    name: AutoConnectAllowedOEM
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config'
+      /v AutoConnectAllowedOEM /t REG_DWORD /d 0 /f
+- id: 18.7.1
+  title: Ensure Allow Print Spooler to accept client connections is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers
+    name: RegisterSpoolerRemoteRpcEndPoint
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers' /v
+      RegisterSpoolerRemoteRpcEndPoint /t REG_DWORD /d 2 /f
+- id: 18.7.2
+  title: 'Ensure ''Configure Redirection Guard'' is set to ''Enabled: Redirection
+    Guard Enabled'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers
+    name: RedirectionguardPolicy
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers' /v
+      RedirectionguardPolicy /t REG_DWORD /d 1 /f
+- id: 18.7.3
+  title: 'Ensure ''Configure RPC connection settings: Protocol to use for outgoing
+    RPC connections'' is set to ''Enabled: RPC over TCP''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC
+    name: RpcUseNamedPipeProtocol
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC'
+      /v RpcUseNamedPipeProtocol /t REG_DWORD /d 0 /f
+- id: 18.7.4
+  title: 'Ensure ''Configure RPC connection settings: Use authentication for outgoing
+    RPC connections'' is set to ''Enabled: Default''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC
+    name: RpcAuthentication
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC'
+      /v RpcAuthentication /t REG_DWORD /d 0 /f
+- id: 18.7.5
+  title: 'Ensure ''Configure RPC listener settings: Protocols to allow for incoming
+    RPC connections'' is set to ''Enabled: RPC over TCP''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC
+    name: RpcProtocols
+    value: 5
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC'
+      /v RpcProtocols /t REG_DWORD /d 5 /f
+- id: 18.7.6
+  title: 'Ensure ''Configure RPC listener settings: Authentication protocol to use
+    for incoming RPC connections:'' is set to ''Enabled: Negotiate'' or higher.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC
+    name: ForceKerberosForRpc
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC'
+      /v ForceKerberosForRpc /t REG_DWORD /d 0 /f
+- id: 18.7.7
+  title: 'Ensure ''Configure RPC over TCP port'' is set to ''Enabled: 0''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC
+    name: RpcTcpPort
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\RPC'
+      /v RpcTcpPort /t REG_DWORD /d 0 /f
+- id: 18.7.8
+  title: Ensure 'Limits print driver installation to Administrators' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint
+    name: RestrictDriverInstallationToAdministrators
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers\PointAndPrint'
+      /v RestrictDriverInstallationToAdministrators /t REG_DWORD /d 1 /f
+- id: 18.7.9
+  title: 'Ensure ''Manage processing of Queue-specific files'' is set to ''Enabled:
+    Limit Queue-specific files to Color profiles'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers
+    name: CopyFilesPolicy
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Printers' /v
+      CopyFilesPolicy /t REG_DWORD /d 1 /f
+- id: 18.7.10
+  title: 'Ensure Point and Print Restrictions: When installing drivers for a new connection
+    is set to Enabled: Show warning and elevation prompt'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint
+    name: NoWarningNoElevationOnInstall
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint'
+      /v NoWarningNoElevationOnInstall /t REG_DWORD /d 0 /f
+- id: 18.7.11
+  title: 'Ensure Point and Print Restrictions: When updating drivers for an existing
+    connection is set to Enabled: Show warning and elevation prompt'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint
+    name: UpdatePromptSettings
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint'
+      /v UpdatePromptSettings /t REG_DWORD /d 0 /f
+- id: 18.8.1.1
+  title: Ensure Turn off notifications network usage is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications
+    name: NoCloudApplicationNotification
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications'
+      /v NoCloudApplicationNotification /t REG_DWORD /d 1 /f
+- id: 18.9.3.1
+  title: Ensure Include command line in process creation events is set to Enabled.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\System\Audit
+    name: ProcessCreationIncludeCmdLine_Enabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\System\Audit'
+      /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f
+- id: 18.9.4.1
+  title: Ensure Encryption Oracle Remediation is set to Enabled Force Updated Clients
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\CredSSP\Parameters
+    name: AllowEncryptionOracle
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\CredSSP\Parameters'
+      /v AllowEncryptionOracle /t REG_DWORD /d 0 /f
+- id: 18.9.4.2
+  title: Ensure Remote host allows delegation of non-exportable credentials is set
+    to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation
+    name: AllowProtectedCreds
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation'
+      /v AllowProtectedCreds /t REG_DWORD /d 1 /f
+- id: 18.9.5.1
+  title: Ensure Turn On Virtualization Based Security is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: EnableVirtualizationBasedSecurity
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      EnableVirtualizationBasedSecurity /t REG_DWORD /d 1 /f
+- id: 18.9.5.2
+  title: 'Ensure ''Turn On Virtualization Based Security: Select Platform Security
+    Level'' is set to ''Secure Boot'' or higher'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: RequirePlatformSecurityFeatures
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      RequirePlatformSecurityFeatures /t REG_DWORD /d 3 /f
+- id: 18.9.5.3
+  title: Ensure Turn On Virtualization Based Security Virtualization Based Protection
+    of Code Integrity is set to Enabled with UEFI lock
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: HypervisorEnforcedCodeIntegrity
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      HypervisorEnforcedCodeIntegrity /t REG_DWORD /d 1 /f
+- id: 18.9.5.4
+  title: Ensure Turn On Virtualization Based Security Require UEFI Memory Attributes
+    Table is set to True checked
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: HVCIMATRequired
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      HVCIMATRequired /t REG_DWORD /d 1 /f
+- id: 18.9.5.5
+  title: Ensure Turn On Virtualization Based Security Credential Guard Configuration
+    is set to Enabled with UEFI lock
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: LsaCfgFlags
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      LsaCfgFlags /t REG_DWORD /d 1 /f
+- id: 18.9.5.6
+  title: Ensure Turn On Virtualization Based Security Secure Launch Configuration
+    is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: ConfigureSystemGuardLaunch
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      ConfigureSystemGuardLaunch /t REG_DWORD /d 1 /f
+- id: 18.9.5.7
+  title: 'Ensure ''Turn On Virtualization Based Security: Kernel-mode Hardware-enforced
+    Stack Protection'' is set to ''Enabled: Enabled in enforcement mode'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard
+    name: ConfigureKernelShadowStacksLaunch
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard' /v
+      ConfigureKernelShadowStacksLaunch /t REG_DWORD /d 1 /f
+- id: 18.9.7.1.1
+  title: Ensure 'Prevent installation of devices that match any of these device IDs'
+    is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions
+    name: DenyDeviceIDs
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions'
+      /v DenyDeviceIDs /t REG_DWORD /d 1 /f
+- id: 18.9.7.1.2
+  title: 'Ensure ''Prevent installation of devices that match any of these device
+    IDs: Prevent installation of devices that match any of these device IDs'' is set
+    to ''PCI\CC_0C0A'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs
+    name: 1
+    value: PCI\CC_0C0A
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceIDs'
+      /v 1 /t REG_SZ /d PCI\CC_0C0A /f
+- id: 18.9.7.1.3
+  title: 'Ensure ''Prevent installation of devices that match any of these device
+    IDs: Also apply to matching devices that are already installed.'' is set to ''True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions
+    name: DenyDeviceIDsRetroactive
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions'
+      /v DenyDeviceIDsRetroactive /t REG_DWORD /d 1 /f
+- id: 18.9.7.1.4
+  title: Ensure 'Prevent installation of devices using drivers that match these device
+    setup classes' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions
+    name: DenyDeviceClasses
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions'
+      /v DenyDeviceClasses /t REG_DWORD /d 1 /f
+- id: 18.9.7.1.5
+  title: Ensure 'Prevent installation of devices using drivers that match these device
+    setup classes' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses
+    name: 1
+    value: '{d48179be-ec20-11d1-b6b8-00c04fa372a7}'
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions\DenyDeviceClasses'
+      /v 1 /t REG_SZ /d {d48179be-ec20-11d1-b6b8-00c04fa372a7} /f
+- id: 18.9.7.1.6
+  title: 'Ensure ''Prevent installation of devices using drivers that match these
+    device setup classes: Also apply to matching devices that are already installed.''
+    is set to ''True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions
+    name: DenyDeviceClassesRetroactive
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Restrictions'
+      /v DenyDeviceClassesRetroactive /t REG_DWORD /d 1 /f
+- id: 18.9.7.2
+  title: Ensure Prevent device metadata retrieval from the Internet is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Device Metadata
+    name: PreventDeviceMetadataFromNetwork
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Device Metadata'
+      /v PreventDeviceMetadataFromNetwork /t REG_DWORD /d 1 /f
+- id: 18.9.13.1
+  title: Ensure Boot-Start Driver Initialization Policy is set to Enabled Good unknown
+    and bad but critical
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\System\Currentcontrolset\Policies\Earlylaunch
+    name: DriverLoadPolicy
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\System\Currentcontrolset\Policies\Earlylaunch' /v DriverLoadPolicy
+      /t REG_DWORD /d 3 /f
+- id: 18.9.19.2
+  title: Ensure Configure registry policy processing Do not apply during periodic
+    background processing is set to Enabled FALSE
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}
+    name: NoBackgroundPolicy
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}'
+      /v NoBackgroundPolicy /t REG_DWORD /d 0 /f
+- id: 18.9.19.3
+  title: Ensure Configure registry policy processing Process even if the Group Policy
+    objects have not changed is set to Enabled TRUE
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}
+    name: NoGPOListChanges
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Group Policy\{35378Eac-683F-11D2-A89A-00C04Fbbcfa2}'
+      /v NoGPOListChanges /t REG_DWORD /d 0 /f
+- id: 18.9.19.4
+  title: 'Ensure ''Configure security policy processing: Do not apply during periodic
+    background processing'' is set to ''Enabled: FALSE'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}
+    name: NoBackgroundPolicy
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}'
+      /v NoBackgroundPolicy /t REG_DWORD /d 0 /f
+- id: 18.9.19.5
+  title: 'Ensure ''Configure security policy processing: Process even if the Group
+    Policy objects have not changed'' is set to ''Enabled: TRUE'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}
+    name: NoGPOListChanges
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}'
+      /v NoGPOListChanges /t REG_DWORD /d 0 /f
+- id: 18.9.19.6
+  title: Ensure Continue experiences on this device is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\System
+    name: EnableCdp
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\System' /v EnableCdp
+      /t REG_DWORD /d 0 /f
+- id: 18.9.19.7
+  title: Ensure Turn off background refresh of Group Policy is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\System\DisableBkGndGroupPolicy
+    name: DisableBkGndGroupPolicy
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\System\DisableBkGndGroupPolicy'
+      /v DisableBkGndGroupPolicy /t REG_DWORD /d 0 /f
+- id: 18.9.20.1.1
+  title: Ensure 'Turn off access to the Store' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer
+    name: NoUseStoreOpenWith
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer' /v NoUseStoreOpenWith
+      /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.2
+  title: Ensure Turn off downloading of print drivers over HTTP is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Printers
+    name: DisableWebPnPDownload
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Printers' /v
+      DisableWebPnPDownload /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.3
+  title: Ensure Turn off handwriting personalization data sharing is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Tabletpc
+    name: PreventHandwritingDataSharing
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Tabletpc' /v PreventHandwritingDataSharing
+      /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.4
+  title: Ensure Turn off handwriting recognition error reporting is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Handwritingerrorreports
+    name: PreventHandwritingErrorReports
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Handwritingerrorreports'
+      /v PreventHandwritingErrorReports /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.5
+  title: Ensure Turn off Internet Connection Wizard if URL connection is referring
+    to Microsoft.com is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Internet Connection Wizard
+    name: ExitOnMSICW
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Internet Connection
+      Wizard' /v ExitOnMSICW /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.6
+  title: Ensure Turn off Internet download for Web publishing and online ordering
+    wizards is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoWebServices
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoWebServices /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.7
+  title: Ensure Turn off printing over HTTP is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Printers
+    name: DisableHTTPPrinting
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Printers' /v
+      DisableHTTPPrinting /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.8
+  title: Ensure Turn off Registration if URL connection is referring to Microsoft.com
+    is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Registration Wizard Control
+    name: NoRegistration
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Registration Wizard
+      Control' /v NoRegistration /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.9
+  title: Ensure Turn off Search Companion content file updates is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Searchcompanion
+    name: DisableContentFileUpdates
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Searchcompanion' /v DisableContentFileUpdates
+      /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.10
+  title: Ensure Turn off the Order Prints picture task is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoOnlinePrintsWizard
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoOnlinePrintsWizard /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.11
+  title: Ensure Turn off the Publish to Web task for files and folders is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoPublishingWizard
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoPublishingWizard /t REG_DWORD /d 1 /f
+- id: 18.9.20.1.12
+  title: Ensure Turn off the Windows Messenger Customer Experience Improvement Program
+    is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Messenger\Client
+    name: CEIP
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Messenger\Client' /v CEIP
+      /t REG_DWORD /d 2 /f
+- id: 18.9.20.1.13
+  title: Ensure Turn off Windows Customer Experience Improvement Program is set to
+    Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Sqmclient\Windows
+    name: CEIPEnable
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Sqmclient\Windows' /v CEIPEnable
+      /t REG_DWORD /d 0 /f
+- id: 18.9.20.1.14
+  title: Ensure Turn off Windows Error Reporting is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Error Reporting
+    name: Disabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Error Reporting'
+      /v Disabled /t REG_DWORD /d 1 /f
+- id: 18.9.23.1
+  title: Ensure Support device authentication using certificate is set to Enabled
+    Automatic
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters
+    name: DevicePKInitBehavior
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters'
+      /v DevicePKInitBehavior /t REG_DWORD /d 0 /f
+- id: 18.9.24.1
+  title: Ensure Enumeration policy for external devices incompatible with Kernel DMA
+    Protection is set to Enabled Block All
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Kernel DMA Protection
+    name: DeviceEnumerationPolicy
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Kernel DMA Protection'
+      /v DeviceEnumerationPolicy /t REG_DWORD /d 0 /f
+- id: 18.9.25.1
+  title: 'Ensure ''Configure password backup directory'' is set to ''Enabled: Active
+    Directory'' or ''Enabled: Azure Active Directory''.'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: BackupDirectory
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v BackupDirectory /t REG_DWORD /d 1 /f
+- id: 18.9.25.2
+  title: Ensure 'Do not allow password expiration time longer than required by policy'
+    is set to 'Enabled'.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PwdExpirationProtectionEnabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PwdExpirationProtectionEnabled /t REG_DWORD /d 1 /f
+- id: 18.9.25.3
+  title: Ensure 'Enable password encryption' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: ADPasswordEncryptionEnabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v ADPasswordEncryptionEnabled /t REG_DWORD /d 1 /f
+- id: 18.9.25.4
+  title: 'Ensure ''Password Settings: Password Complexity'' is set to ''Enabled: Large
+    letters + small letters + numbers + special characters'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PasswordComplexity
+    value: 4
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PasswordComplexity /t REG_DWORD /d 4 /f
+- id: 18.9.25.5
+  title: 'Ensure ''Password Settings: Password Length'' is set to ''Enabled: 15 or
+    more'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PasswordLength
+    value: 15
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PasswordLength /t REG_DWORD /d 15 /f
+- id: 18.9.25.6
+  title: 'Ensure ''Password Settings: Password Age (Days)'' is set to ''Enabled: 30
+    or fewer'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PasswordAgeDays
+    value: 30
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PasswordAgeDays /t REG_DWORD /d 30 /f
+- id: 18.9.25.7
+  title: 'Ensure ''Post-authentication actions: Grace period (hours)'' is set to ''Enabled:
+    8 or fewer hours, but not 0'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PostAuthenticationResetDelay
+    value: 8
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PostAuthenticationResetDelay /t REG_DWORD /d 8 /f
+- id: 18.9.25.8
+  title: 'Ensure ''Post-authentication actions: Actions'' is set to ''Enabled: Reset
+    the password and logoff the managed account'' or higher'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS
+    name: PostAuthenticationActions
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\LAPS'
+      /v PostAuthenticationActions /t REG_DWORD /d 3 /f
+- id: 18.9.26.1
+  title: Ensure 'Allow Custom SSPs and APs to be loaded into LSASS' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: AllowCustomSSPsAPs
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v AllowCustomSSPsAPs
+      /t REG_DWORD /d 0 /f
+- id: 18.9.26.2
+  title: 'Ensure ''Configures LSASS to run as a protected process'' is set to ''Enabled:
+    Enabled with UEFI Lock'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SYSTEM\CurrentControlSet\Control\Lsa
+    name: RunAsPPL
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Lsa' /v RunAsPPL /t
+      REG_DWORD /d 1 /f
+- id: 18.9.27.1
+  title: Ensure Disallow copying of user input methods to the system account for sign-in
+    is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Control Panel\International
+    name: BlockUserInputMethodsForSignIn
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Control Panel\International'
+      /v BlockUserInputMethodsForSignIn /t REG_DWORD /d 1 /f
+- id: 18.9.28.1
+  title: Ensure Block user from showing account details on sign-in is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: BlockUserFromShowingAccountDetailsOnSignin
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v BlockUserFromShowingAccountDetailsOnSignin
+      /t REG_DWORD /d 1 /f
+- id: 18.9.28.2
+  title: Ensure Do not display network selection UI is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: DontDisplayNetworkSelectionUI
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v DontDisplayNetworkSelectionUI
+      /t REG_DWORD /d 1 /f
+- id: 18.9.28.3
+  title: Ensure Do not enumerate connected users on domain-joined computers is set
+    to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: DontEnumerateConnectedUsers
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v DontEnumerateConnectedUsers
+      /t REG_DWORD /d 1 /f
+- id: 18.9.28.4
+  title: Ensure Enumerate local users on domain-joined computers is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: EnumerateLocalUsers
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v EnumerateLocalUsers
+      /t REG_DWORD /d 0 /f
+- id: 18.9.28.5
+  title: Ensure Turn off app notifications on the lock screen is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: DisableLockScreenAppNotifications
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v DisableLockScreenAppNotifications
+      /t REG_DWORD /d 1 /f
+- id: 18.9.28.6
+  title: Ensure Turn off picture password sign-in is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: BlockDomainPicturePassword
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v BlockDomainPicturePassword
+      /t REG_DWORD /d 1 /f
+- id: 18.9.28.7
+  title: Ensure Turn on convenience PIN sign-in is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: AllowDomainPINLogon
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v AllowDomainPINLogon
+      /t REG_DWORD /d 0 /f
+- id: 18.9.31.1
+  title: Ensure Allow Clipboard synchronization across devices is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: AllowCrossDeviceClipboard
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v AllowCrossDeviceClipboard
+      /t REG_DWORD /d 0 /f
+- id: 18.9.31.2
+  title: Ensure Allow upload of User Activities is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: UploadUserActivities
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v UploadUserActivities
+      /t REG_DWORD /d 0 /f
+- id: 18.9.33.6.1
+  title: Ensure Allow network connectivity during connected-standby on battery is
+    set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9
+    name: DCSettingIndex
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
+      /v DCSettingIndex /t REG_DWORD /d 0 /f
+- id: 18.9.33.6.2
+  title: Ensure Allow network connectivity during connected-standby plugged in is
+    set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9
+    name: ACSettingIndex
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\f15576e8-98b7-4186-b944-eafa664402d9'
+      /v ACSettingIndex /t REG_DWORD /d 0 /f
+- id: 18.9.33.6.3
+  title: Ensure 'Allow standby states (S1-S3) when sleeping (on battery)' is set to
+    'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab
+    name: DCSettingIndex
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab'
+      /v DCSettingIndex /t REG_DWORD /d 0 /f
+- id: 18.9.33.6.4
+  title: Ensure 'Allow standby states (S1-S3) when sleeping (plugged in)' is set to
+    'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab
+    name: ACSettingIndex
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\abfc2519-3608-4c2a-94ea-171b0ed546ab'
+      /v ACSettingIndex /t REG_DWORD /d 0 /f
+- id: 18.9.33.6.5
+  title: Ensure Require a password when a computer wakes on battery is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
+    name: DCSettingIndex
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51'
+      /v DCSettingIndex /t REG_DWORD /d 1 /f
+- id: 18.9.33.6.6
+  title: Ensure Require a password when a computer wakes plugged in is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51
+    name: ACSettingIndex
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51'
+      /v ACSettingIndex /t REG_DWORD /d 1 /f
+- id: 18.9.35.1
+  title: Ensure Configure Offer Remote Assistance is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fAllowUnsolicited
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v fAllowUnsolicited /t REG_DWORD /d 0 /f
+- id: 18.9.35.2
+  title: Ensure Configure Solicited Remote Assistance is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fAllowToGetHelp
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v fAllowToGetHelp /t REG_DWORD /d 0 /f
+- id: 18.9.36.1
+  title: Ensure Enable RPC Endpoint Mapper Client Authentication is set to Enabled.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Rpc
+    name: EnableAuthEpResolution
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Rpc' /v EnableAuthEpResolution
+      /t REG_DWORD /d 1 /f
+- id: 18.9.36.2
+  title: Ensure Restrict Unauthenticated RPC clients is set to Enabled Authenticated.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Rpc
+    name: RestrictRemoteClients
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Rpc' /v RestrictRemoteClients
+      /t REG_DWORD /d 1 /f
+- id: 18.9.47.5.1
+  title: Ensure Microsoft Support Diagnostic Tool Turn on MSDT interactive communication
+    with support provider is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Scripteddiagnosticsprovider\Policy
+    name: DisableQueryRemoteServer
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Scripteddiagnosticsprovider\Policy'
+      /v DisableQueryRemoteServer /t REG_DWORD /d 0 /f
+- id: 18.9.47.11.1
+  title: Ensure EnableDisable PerfTrack is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Wdi\{9C5A40Da-B965-4Fc3-8781-88Dd50A6299D}
+    name: ScenarioExecutionEnabled
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Wdi\{9C5A40Da-B965-4Fc3-8781-88Dd50A6299D}'
+      /v ScenarioExecutionEnabled /t REG_DWORD /d 0 /f
+- id: 18.9.49.1
+  title: Ensure Turn off the advertising ID is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Advertisinginfo
+    name: DisabledByGroupPolicy
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Advertisinginfo'
+      /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f
+- id: 18.9.51.1.1
+  title: Ensure Enable Windows NTP Client is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpclient
+    name: Enabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpclient'
+      /v Enabled /t REG_DWORD /d 1 /f
+- id: 18.9.51.1.2
+  title: Ensure Enable Windows NTP Server is set to Disabled.
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpserver
+    name: Enabled
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\W32Time\Timeproviders\Ntpserver'
+      /v Enabled /t REG_DWORD /d 0 /f
+- id: 18.10.3.1
+  title: Ensure Allow a Windows app to share application data between users is set
+    to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Currentversion\Appmodel\Statemanager
+    name: AllowSharedLocalAppData
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Currentversion\Appmodel\Statemanager'
+      /v AllowSharedLocalAppData /t REG_DWORD /d 0 /f
+- id: 18.10.3.2
+  title: Ensure 'Prevent non-admin users from installing packaged Windows apps' is
+    set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Appx
+    name: BlockNonAdminUserInstall
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Appx' /v BlockNonAdminUserInstall
+      /t REG_DWORD /d 1 /f
+- id: 18.10.4.1
+  title: 'Ensure ''Let Windows apps activate with voice while the system is locked''
+    is set to ''Enabled: Force Deny'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\AppPrivacy
+    name: LetAppsActivateWithVoiceAboveLock
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\AppPrivacy' /v LetAppsActivateWithVoiceAboveLock
+      /t REG_DWORD /d 1 /f
+- id: 18.10.5.1
+  title: Ensure Allow Microsoft accounts to be optional is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\System
+    name: MSAOptional
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\System'
+      /v MSAOptional /t REG_DWORD /d 1 /f
+- id: 18.10.5.2
+  title: Ensure 'Block launching Universal Windows apps with Windows Runtime API access
+    from hosted content.' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\System
+    name: BlockHostedAppAccessWinRT
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\System'
+      /v BlockHostedAppAccessWinRT /t REG_DWORD /d 1 /f
+- id: 18.10.7.1
+  title: Ensure Disallow Autoplay for non-volume devices is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Explorer
+    name: NoAutoplayfornonVolume
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Explorer' /v NoAutoplayfornonVolume
+      /t REG_DWORD /d 1 /f
+- id: 18.10.7.2
+  title: Ensure Set the default behavior for AutoRun is set to Enabled Do not execute
+    any autorun commands
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoAutorun
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoAutorun /t REG_DWORD /d 1 /f
+- id: 18.10.7.3
+  title: Ensure Turn off Autoplay is set to Enabled All drives
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: NoDriveTypeAutoRun
+    value: 255
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v NoDriveTypeAutoRun /t REG_DWORD /d 255 /f
+- id: 18.10.8.1.1
+  title: Ensure Configure enhanced anti-spoofing is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Biometrics\Facialfeatures
+    name: EnhancedAntiSpoofing
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Biometrics\Facialfeatures'
+      /v EnhancedAntiSpoofing /t REG_DWORD /d 1 /f
+- id: 18.10.9.1.2
+  title: Ensure 'Choose how BitLocker-protected fixed drives can be recovered' is
+    set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVRecovery
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVRecovery /t REG_DWORD
+      /d 1 /f
+- id: 18.10.9.1.3
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Allow
+    data recovery agent'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVManageDRA
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVManageDRA /t
+      REG_DWORD /d 1 /f
+- id: 18.10.9.1.4
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Recovery
+    Password'' is set to ''Enabled: Allow 48-digit recovery password'' or higher'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVRecoveryPassword
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVRecoveryPassword
+      /t REG_DWORD /d 2 /f
+- id: 18.10.9.1.5
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Recovery
+    Key'' is set to ''Enabled: Allow 256-bit recovery key'' or higher'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVRecoveryKey
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVRecoveryKey /t
+      REG_DWORD /d 2 /f
+- id: 18.10.9.1.6
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Omit
+    recovery options from the BitLocker setup wizard'' is set to ''Enabled: True'''''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVHideRecoveryPage
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVHideRecoveryPage
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.1.7
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Save
+    BitLocker recovery information to AD DS for fixed data drives'' is set to ''Enabled:
+    False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVHideRecoveryPage
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVHideRecoveryPage
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.1.8
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Configure
+    storage of BitLocker recovery information to AD DS'' is set to ''Enabled: Backup
+    recovery passwords and key packages'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVActiveDirectoryInfoToStore
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVActiveDirectoryInfoToStore
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.1.9
+  title: 'Ensure ''Choose how BitLocker-protected fixed drives can be recovered: Do
+    not enable BitLocker until recovery information is stored to AD DS for fixed data
+    drives'' is set to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVRequireActiveDirectoryBackup
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVRequireActiveDirectoryBackup
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.1.10
+  title: Ensure 'Configure use of hardware-based encryption for fixed data drives'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVHardwareEncryption
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVHardwareEncryption
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.1.11
+  title: Ensure 'Configure use of passwords for fixed data drives' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVPassphrase
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVPassphrase /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.1.12
+  title: Ensure 'Configure use of smart cards on fixed data drives' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVAllowUserCert
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVAllowUserCert
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.1.13
+  title: 'Ensure ''Configure use of smart cards on fixed data drives: Require use
+    of smart cards on fixed data drives'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: FDVEnforceUserCert
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v FDVEnforceUserCert
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.1
+  title: Ensure 'Allow enhanced PINs for startup' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseEnhancedPin
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseEnhancedPin /t
+      REG_DWORD /d 1 /f
+- id: 18.10.9.2.2
+  title: Ensure 'Allow Secure Boot for integrity validation' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSAllowSecureBootForIntegrity
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSAllowSecureBootForIntegrity
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.3
+  title: Ensure 'Choose how BitLocker-protected operating system drives can be recovered'
+    is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSRecovery
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSRecovery /t REG_DWORD
+      /d 1 /f
+- id: 18.10.9.2.4
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Allow data recovery agent'' is set to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSManageDRA
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSManageDRA /t REG_DWORD
+      /d 0 /f
+- id: 18.10.9.2.5
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Recovery Password'' is set to ''Enabled: Require 48-digit recovery password'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSRecoveryPassword
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSRecoveryPassword
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.6
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Recovery Key'' is set to ''Enabled: Do not allow 256-bit recovery key'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSRecoveryKey
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSRecoveryKey /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.2.7
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Omit recovery options from the BitLocker setup wizard'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSHideRecoveryPage
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSHideRecoveryPage
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.8
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Save BitLocker recovery information to AD DS for operating system drives'' is
+    set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSActiveDirectoryBackup
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSActiveDirectoryBackup
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.9
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Configure storage of BitLocker recovery information to AD DS:'' is set to ''Enabled:
+    Store recovery passwords and key packages'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSActiveDirectoryInfoToStore
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSActiveDirectoryInfoToStore
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.10
+  title: 'Ensure ''Choose how BitLocker-protected operating system drives can be recovered:
+    Do not enable BitLocker until recovery information is stored to AD DS for operating
+    system drives'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSRequireActiveDirectoryBackup
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSRequireActiveDirectoryBackup
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.11
+  title: Ensure 'Configure use of hardware-based encryption for operating system drives'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSHardwareEncryption
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSHardwareEncryption
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.2.12
+  title: Ensure 'Configure use of passwords for operating system drives' is set to
+    'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: OSPassphrase
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v OSPassphrase /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.2.13
+  title: Ensure 'Require additional authentication at startup' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseAdvancedStartup
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseAdvancedStartup
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.2.14
+  title: 'Ensure ''Require additional authentication at startup: Allow BitLocker without
+    a compatible TPM'' is set to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: EnableBDEWithNoTPM
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v EnableBDEWithNoTPM
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.2.15
+  title: 'Ensure ''Require additional authentication at startup: Configure TPM startup:''
+    is set to ''Enabled: Do not allow TPM'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseTPM
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseTPM /t REG_DWORD
+      /d 0 /f
+- id: 18.10.9.2.16
+  title: 'Ensure ''Require additional authentication at startup: Configure TPM startup
+    PIN:'' is set to ''Enabled: Require startup PIN with TPM'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseTPMPIN
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseTPMPIN /t REG_DWORD
+      /d 1 /f
+- id: 18.10.9.2.17
+  title: 'Ensure ''Require additional authentication at startup: Configure TPM startup
+    key:'' is set to ''Enabled: Do not allow startup key with TPM'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseTPMKey
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseTPMKey /t REG_DWORD
+      /d 0 /f
+- id: 18.10.9.2.18
+  title: 'Ensure ''Require additional authentication at startup: Configure TPM startup
+    key and PIN:'' is set to ''Enabled: Do not allow startup key and PIN with TPM'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: UseTPMKeyPIN
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v UseTPMKeyPIN /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.3.2
+  title: Ensure 'Choose how BitLocker-protected removable drives can be recovered'
+    is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVRecovery
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVRecovery /t REG_DWORD
+      /d 1 /f
+- id: 18.10.9.3.3
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Allow data recovery agent'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVManageDRA
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVManageDRA /t
+      REG_DWORD /d 1 /f
+- id: 18.10.9.3.4
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Recovery Password'' is set to ''Enabled: Do not allow 48-digit recovery password'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVRecoveryPassword
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVRecoveryPassword
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.3.5
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Recovery Key'' is set to ''Enabled: Do not allow 256-bit recovery key'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVRecoveryKey
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVRecoveryKey /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.3.6
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Omit recovery options from the BitLocker setup wizard'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVHideRecoveryPage
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVHideRecoveryPage
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.3.7
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Save BitLocker recovery information to AD DS for removable data drives'' is set
+    to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVActiveDirectoryBackup
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVActiveDirectoryBackup
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.3.8
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Configure storage of BitLocker recovery information to AD DS:'' is set to ''Enabled:
+    Backup recovery passwords and key packages'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVActiveDirectoryInfoToStore
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVActiveDirectoryInfoToStore
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.3.9
+  title: 'Ensure ''Choose how BitLocker-protected removable drives can be recovered:
+    Do not enable BitLocker until recovery information is stored to AD DS for removable
+    data drives'' is set to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVRequireActiveDirectoryBackup
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVRequireActiveDirectoryBackup
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.3.10
+  title: Ensure 'Configure use of hardware-based encryption for removable data drives'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVHardwareEncryption
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVHardwareEncryption
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.3.11
+  title: Ensure 'Configure use of passwords for removable data drives' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVPassphrase
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVPassphrase /t
+      REG_DWORD /d 0 /f
+- id: 18.10.9.3.12
+  title: Ensure 'Configure use of smart cards on removable data drives' is set to
+    'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVAllowUserCert
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVAllowUserCert
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.3.13
+  title: 'Ensure ''Configure use of smart cards on removable data drives: Require
+    use of smart cards on removable data drives'' is set to ''Enabled: True'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVEnforceUserCert
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVEnforceUserCert
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.3.14
+  title: Ensure 'Deny write access to removable drives not protected by BitLocker'
+    is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVDenyWriteAccess
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVDenyWriteAccess
+      /t REG_DWORD /d 1 /f
+- id: 18.10.9.3.15
+  title: 'Ensure ''Deny write access to removable drives not protected by BitLocker:
+    Do not allow write access to devices configured in another organization'' is set
+    to ''Enabled: False'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: RDVDenyCrossOrg
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v RDVDenyCrossOrg
+      /t REG_DWORD /d 0 /f
+- id: 18.10.9.4
+  title: Ensure 'Disable new DMA devices when this computer is locked' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\FVE
+    name: DisableExternalDMAUnderLock
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\FVE' /v DisableExternalDMAUnderLock
+      /t REG_DWORD /d 1 /f
+- id: 18.10.10.1
+  title: Ensure 'Allow Use of Camera' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Camera
+    name: AllowCamera
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Camera' /v AllowCamera /t
+      REG_DWORD /d 0 /f
+- id: 18.10.12.1
+  title: Ensure Turn off cloud consumer account state content is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+    name: DisableConsumerAccountStateContent
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent' /v
+      DisableConsumerAccountStateContent /t REG_DWORD /d 1 /f
+- id: 18.10.12.2
+  title: Ensure 'Turn off cloud optimized content' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+    name: DisableCloudOptimizedContent
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent' /v
+      DisableCloudOptimizedContent /t REG_DWORD /d 1 /f
+- id: 18.10.12.3
+  title: Ensure 'Turn off Microsoft consumer experiences' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent
+    name: DisableWindowsConsumerFeatures
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent' /v
+      DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f
+- id: 18.10.13.1
+  title: Ensure Require pin for pairing is set to Enabled First Time OR Enabled Always
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\Connect
+    name: RequirePinForPairing
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\Connect' /v RequirePinForPairing
+      /t REG_DWORD /d 1 /f
+- id: 18.10.14.1
+  title: Ensure Do not display the password reveal button is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Credui
+    name: DisablePasswordReveal
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Credui' /v DisablePasswordReveal
+      /t REG_DWORD /d 1 /f
+- id: 18.10.14.2
+  title: Ensure Enumerate administrator accounts on elevation is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Credui
+    name: EnumerateAdministrators
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Credui'
+      /v EnumerateAdministrators /t REG_DWORD /d 0 /f
+- id: 18.10.14.3
+  title: Ensure 'Prevent the use of security questions for local accounts' is set
+    to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: NoLocalPasswordResetQuestions
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v NoLocalPasswordResetQuestions
+      /t REG_DWORD /d 1 /f
+- id: 18.10.15.1
+  title: 'Ensure Allow Diagnostic Data is set to Enabled: Diagnostic data off (not
+    recommended) or Enabled: Send required diagnostic data'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    name: AllowTelemetry
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+      /v AllowTelemetry /t REG_DWORD /d 1 /f
+- id: 18.10.15.2
+  title: Ensure Configure Authenticated Proxy usage for the Connected User Experience
+    and Telemetry service is set to Enabled Disable Authenticated Proxy usage
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\DataCollection
+    name: DisableEnterpriseAuthProxy
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\DataCollection'
+      /v DisableEnterpriseAuthProxy /t REG_DWORD /d 1 /f
+- id: 18.10.15.3
+  title: Ensure Disable OneSettings Downloads is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    name: DisableOneSettingsDownloads
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+      /v DisableOneSettingsDownloads /t REG_DWORD /d 1 /f
+- id: 18.10.15.4
+  title: Ensure Do not show feedback notifications is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Datacollection
+    name: DoNotShowFeedbackNotifications
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Datacollection'
+      /v DoNotShowFeedbackNotifications /t REG_DWORD /d 1 /f
+- id: 18.10.15.5
+  title: Ensure Enable OneSettings Auditing' is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    name: EnableOneSettingsAuditing
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+      /v EnableOneSettingsAuditing /t REG_DWORD /d 1 /f
+- id: 18.10.15.6
+  title: Ensure Limit Diagnostic Log Collection is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    name: LimitDiagnosticLogCollection
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+      /v LimitDiagnosticLogCollection /t REG_DWORD /d 1 /f
+- id: 18.10.15.7
+  title: Ensure Limit Dump Collection is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+    name: LimitDumpCollection
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
+      /v LimitDumpCollection /t REG_DWORD /d 1 /f
+- id: 18.10.15.8
+  title: Ensure Toggle user control over Insider builds is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Previewbuilds
+    name: AllowBuildPreview
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Previewbuilds' /v
+      AllowBuildPreview /t REG_DWORD /d 0 /f
+- id: 18.10.17.1
+  title: Ensure 'Enable App Installer' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\AppInstaller
+    name: EnableAppInstaller
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\AppInstaller' /v
+      EnableAppInstaller /t REG_DWORD /d 0 /f
+- id: 18.10.17.2
+  title: Ensure 'Enable App Installer Experimental Features' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\AppInstaller
+    name: EnableExperimentalFeatures
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\AppInstaller' /v
+      EnableExperimentalFeatures /t REG_DWORD /d 0 /f
+- id: 18.10.17.3
+  title: Ensure 'Enable App Installer Hash Override' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\AppInstaller
+    name: EnableHashOverride
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\AppInstaller' /v
+      EnableHashOverride /t REG_DWORD /d 0 /f
+- id: 18.10.17.4
+  title: Ensure 'Enable App Installer ms-appinstaller protocol' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\AppInstaller
+    name: EnableMSAppInstallerProtocol
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\AppInstaller' /v
+      EnableMSAppInstallerProtocol /t REG_DWORD /d 0 /f
+- id: 18.10.25.1.1
+  title: Ensure Application Control Event Log behavior when the log file reaches its
+    maximum size is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\EventLog\Application
+    name: Retention
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\EventLog\Application'
+      /v Retention /t REG_SZ /d 0 /f
+- id: 18.10.25.1.2
+  title: Ensure Application Specify the maximum log file size KB is set to Enabled
+    32768 or greater
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\Application
+    name: MaxSize
+    value: 32768
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\Application'
+      /v MaxSize /t REG_DWORD /d 32768 /f
+- id: 18.10.25.2.1
+  title: Ensure Security Control Event Log behavior when the log file reaches its
+    maximum size is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\Security
+    name: Retention
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\Security'
+      /v Retention /t REG_SZ /d 0 /f
+- id: 18.10.25.2.2
+  title: Ensure Security Specify the maximum log file size KB is set to Enabled 196608
+    or greater
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\Security
+    name: MaxSize
+    value: 196608
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\Security'
+      /v MaxSize /t REG_DWORD /d 196608 /f
+- id: 18.10.25.3.1
+  title: Ensure Setup Control Event Log behavior when the log file reaches its maximum
+    size is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\Setup
+    name: Retention
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\Setup'
+      /v Retention /t REG_SZ /d 0 /f
+- id: 18.10.25.3.2
+  title: Ensure Setup Specify the maximum log file size KB is set to Enabled 32768
+    or greater
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\Setup
+    name: MaxSize
+    value: 32768
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\Setup'
+      /v MaxSize /t REG_DWORD /d 32768 /f
+- id: 18.10.25.4.1
+  title: Ensure System Control Event Log behavior when the log file reaches its maximum
+    size is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\System
+    name: Retention
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\System'
+      /v Retention /t REG_SZ /d 0 /f
+- id: 18.10.25.4.2
+  title: Ensure System Specify the maximum log file size KB is set to Enabled 32768
+    or greater
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Eventlog\System
+    name: MaxSize
+    value: 32768
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Eventlog\System'
+      /v MaxSize /t REG_DWORD /d 32768 /f
+- id: 18.10.28.2
+  title: Ensure 'Turn off account-based insights, recent, favorite, and recommended
+    files in File Explorer' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Explorer
+    name: DisableGraphRecentItems
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Explorer' /v DisableGraphRecentItems
+      /t REG_DWORD /d 1 /f
+- id: 18.10.28.3
+  title: Ensure Turn off Data Execution Prevention for Explorer is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Explorer
+    name: NoDataExecutionPrevention
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Explorer' /v NoDataExecutionPrevention
+      /t REG_DWORD /d 0 /f
+- id: 18.10.28.4
+  title: Ensure Turn off heap termination on corruption is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Explorer
+    name: NoHeapTerminationOnCorruption
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Explorer' /v NoHeapTerminationOnCorruption
+      /t REG_DWORD /d 0 /f
+- id: 18.10.28.5
+  title: Ensure Turn off shell protocol protected mode is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer
+    name: PreXPSP2ShellProtocolBehavior
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\Currentversion\Policies\Explorer'
+      /v PreXPSP2ShellProtocolBehavior /t REG_DWORD /d 0 /f
+- id: 18.10.36.1
+  title: Ensure Turn off location is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Locationandsensors
+    name: DisableLocation
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Locationandsensors'
+      /v DisableLocation /t REG_DWORD /d 1 /f
+- id: 18.10.40.1
+  title: Ensure Allow Message Service Cloud Sync is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Messaging
+    name: AllowMessageSync
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Messaging' /v AllowMessageSync
+      /t REG_DWORD /d 0 /f
+- id: 18.10.41.1
+  title: Ensure Block all consumer Microsoft account user authentication is set to
+    Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\MicrosoftAccount
+    name: DisableUserAuth
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\MicrosoftAccount' /v DisableUserAuth
+      /t REG_DWORD /d 1 /f
+- id: 18.10.42.5.1
+  title: Ensure Configure local setting override for reporting to Microsoft MAPS is
+    set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+    name: LocalSettingOverrideSpynetReporting
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet'
+      /v LocalSettingOverrideSpynetReporting /t REG_DWORD /d 0 /f
+- id: 18.10.42.5.2
+  title: Ensure Join Microsoft MAPS is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+    name: SpynetReporting
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Spynet'
+      /v SpynetReporting /t REG_DWORD /d 0 /f
+- id: 18.10.42.6.1.1
+  title: Ensure Configure Attack Surface Reduction rules is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit
+      Guard\ASR
+    name: ExploitGuard_ASR_Rules
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Windows
+      Defender Exploit Guard\ASR' /v ExploitGuard_ASR_Rules /t REG_DWORD /d 1 /f
+- id: 18.10.42.6.1.2
+  title: Ensure Configure Attack Surface Reduction rules Set the state for each ASR
+    rule is configured
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit
+      Guard\ASR\Rules
+    name: '{{ item }}'
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Windows
+      Defender Exploit Guard\ASR\Rules' /v {{ item }} /t REG_SZ /d 1 /f
+- id: 18.10.42.6.3.1
+  title: Ensure Prevent users and apps from accessing dangerous websites is set to
+    Enabled Block
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit
+      Guard\Network Protection
+    name: EnableNetworkProtection
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Windows
+      Defender Exploit Guard\Network Protection' /v EnableNetworkProtection /t REG_DWORD
+      /d 1 /f
+- id: 18.10.42.7.1
+  title: (L2) Ensure 'Enable file hash computation feature' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\MpEngine
+    name: EnableFileHashComputation
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\MpEngine'
+      /v EnableFileHashComputation /t REG_DWORD /d 1 /f
+- id: 18.10.42.10.1
+  title: Ensure Scan all downloaded files and attachments is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+    name: DisableIOAVProtection
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time
+      Protection' /v DisableIOAVProtection /t REG_DWORD /d 0 /f
+- id: 18.10.42.10.2
+  title: Ensure 'Turn off real-time protection' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+    name: DisableRealtimeMonitoring
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time
+      Protection' /v DisableRealtimeMonitoring /t REG_DWORD /d 0 /f
+- id: 18.10.42.10.3
+  title: Ensure Turn on behavior monitoring is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+    name: DisableBehaviorMonitoring
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time
+      Protection' /v DisableBehaviorMonitoring /t REG_DWORD /d 0 /f
+- id: 18.10.42.10.4
+  title: Ensure 'Turn on script scanning' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+    name: DisableScriptScanning
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time
+      Protection' /v DisableScriptScanning /t REG_DWORD /d 0 /f
+- id: 18.10.42.12.1
+  title: Ensure Configure Watson events is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Reporting
+    name: DisableGenericRePorts
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Reporting'
+      /v DisableGenericRePorts /t REG_DWORD /d 1 /f
+- id: 18.10.42.13.1
+  title: Ensure 'Scan packed executables' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+    name: DisablePackedExeScanning
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Scan' /v
+      DisablePackedExeScanning /t REG_DWORD /d 0 /f
+- id: 18.10.42.13.2
+  title: Ensure Scan removable drives is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+    name: DisableRemovableDriveScanning
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Scan' /v
+      DisableRemovableDriveScanning /t REG_DWORD /d 0 /f
+- id: 18.10.42.13.3
+  title: Ensure Turn on e-mail scanning is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+    name: DisableEmailScanning
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender\Scan' /v
+      DisableEmailScanning /t REG_DWORD /d 0 /f
+- id: 18.10.42.16
+  title: Ensure Configure detection for potentially unwanted applications is set to
+    Enabled Block
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender
+    name: PUAProtection
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender' /v PUAProtection
+      /t REG_DWORD /d 1 /f
+- id: 18.10.42.17
+  title: Ensure Turn off Windows Defender AntiVirus is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender
+    name: DisableAntiSpyware
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender' /v DisableAntiSpyware
+      /t REG_DWORD /d 0 /f
+- id: 18.10.43.2
+  title: Ensure 'Allow camera and microphone access in Microsoft Defender Application
+    Guard' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\AppHVSI
+    name: AllowCameraMicrophoneRedirection
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\AppHVSI' /v AllowCameraMicrophoneRedirection
+      /t REG_DWORD /d 0 /f
+- id: 18.10.43.3
+  title: Ensure 'Allow data persistence for Microsoft Defender Application Guard'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\AppHVSI
+    name: AllowPersistence
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\AppHVSI' /v AllowPersistence
+      /t REG_DWORD /d 0 /f
+- id: 18.10.43.4
+  title: Ensure 'Allow files to download and save to the host operating system from
+    Microsoft Defender Application Guard' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\AppHVSI
+    name: SaveFilesToHost
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\AppHVSI' /v SaveFilesToHost
+      /t REG_DWORD /d 0 /f
+- id: 18.10.43.5
+  title: 'Ensure ''Configure Microsoft Defender Application Guard clipboard settings:
+    Clipboard behavior setting'' is set to ''Enabled: Enable clipboard operation from
+    an isolated session to the host'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\AppHVSI
+    name: AppHVSIClipboardSettings
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\AppHVSI' /v AppHVSIClipboardSettings
+      /t REG_DWORD /d 1 /f
+- id: 18.10.43.6
+  title: 'Ensure ''Turn on Microsoft Defender Application Guard in Managed Mode''
+    is set to ''Enabled: 1'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\AppHVSI
+    name: AllowAppHVSI_ProviderSet
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\AppHVSI' /v AllowAppHVSI_ProviderSet
+      /t REG_DWORD /d 1 /f
+- id: 18.10.49.1
+  title: Ensure 'Enable news and interests on the taskbar' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Feeds
+    name: EnableFeeds
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Feeds' /v
+      EnableFeeds /t REG_DWORD /d 0 /f
+- id: 18.10.50.1
+  title: Ensure Prevent the usage of OneDrive for file storage is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Onedrive
+    name: DisableFileSyncNGSC
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Onedrive' /v DisableFileSyncNGSC
+      /t REG_DWORD /d 1 /f
+- id: 18.10.55.1
+  title: (L2) Ensure 'Turn off Push To Install service' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\PushToInstall
+    name: DisablePushToInstall
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\PushToInstall' /v DisablePushToInstall
+      /t REG_DWORD /d 1 /f
+- id: 18.10.56.2.2
+  title: Ensure 'Disable Cloud Clipboard integration for server-to-client data transfer'
+    is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client
+    name: DisableCloudClipboardIntegration
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\Client'
+      /v DisableCloudClipboardIntegration /t REG_DWORD /d 1 /f
+- id: 18.10.56.2.3
+  title: Ensure Do not allow passwords to be saved is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: DisablePasswordSaving
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v DisablePasswordSaving /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.2.1
+  title: Ensure 'Allow users to connect remotely by using Remote Desktop Services'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDenyTSConnections
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDenyTSConnections /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.1
+  title: Ensure 'Allow UI Automation redirection' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: EnableUiaRedirection
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v EnableUiaRedirection /t REG_DWORD /d 0 /f
+- id: 18.10.56.3.3.2
+  title: Ensure Do not allow COM port redirection is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisableCcm
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisableCcm /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.3
+  title: Ensure Do not allow drive redirection is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisableCdm
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisableCdm /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.4
+  title: Ensure 'Do not allow location redirection' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisableLocationRedir
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisableLocationRedir /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.5
+  title: Ensure 'Do not allow LPT port redirection' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisableLPT
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisableLPT /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.6
+  title: Ensure 'Do not allow supported Plug and Play device redirection' is set to
+    'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisablePNPRedir
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisablePNPRedir /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.3.7
+  title: Ensure 'Do not allow WebAuthn redirection' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services
+    name: fDisableWebAuthn
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows NT\Terminal Services'
+      /v fDisableWebAuthn /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.9.1
+  title: Ensure Always prompt for password upon connection is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fPromptForPassword
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v fPromptForPassword /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.9.2
+  title: Ensure Require secure RPC communication is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: fEncryptRPCTraffic
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v fEncryptRPCTraffic /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.9.3
+  title: Ensure Require use of specific security layer for remote RDP connections
+    is set to Enabled SSL
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: SecurityLayer
+    value: 2
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v SecurityLayer /t REG_DWORD /d 2 /f
+- id: 18.10.56.3.9.4
+  title: Ensure Require user authentication for remote connections by using Network
+    Level Authentication is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: UserAuthentication
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v UserAuthentication /t REG_DWORD /d 1 /f
+- id: 18.10.56.3.9.5
+  title: Ensure Set client connection encryption level is set to Enabled High Level
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: MinEncryptionLevel
+    value: 3
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v MinEncryptionLevel /t REG_DWORD /d 3 /f
+- id: 18.10.56.3.10.1
+  title: Ensure Set time limit for active but idle Remote Desktop Services sessions
+    is set to Enabled 15 minutes or less, but not Never (0)
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: MaxIdleTime
+    value: 900000
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v MaxIdleTime /t REG_DWORD /d 900000 /f
+- id: 18.10.56.3.10.2
+  title: Ensure Set time limit for disconnected sessions is set to Enabled 1 minute
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: MaxDisconnectionTime
+    value: 60000
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v MaxDisconnectionTime /t REG_DWORD /d 60000 /f
+- id: 18.10.56.3.11.1
+  title: Ensure Do not delete temp folders upon exit is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services
+    name: DeleteTempDirsOnExit
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Terminal Services'
+      /v DeleteTempDirsOnExit /t REG_DWORD /d 1 /f
+- id: 18.10.57.1
+  title: Ensure Prevent downloading of enclosures is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Internet Explorer\Feeds
+    name: DisableEnclosureDownload
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Internet Explorer\Feeds'
+      /v DisableEnclosureDownload /t REG_DWORD /d 1 /f
+- id: 18.10.58.2
+  title: Ensure Allow Cloud Search is set to Enabled Disable Cloud Search
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowCloudSearch
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v AllowCloudSearch /t REG_DWORD /d 0 /f
+- id: 18.10.58.3
+  title: Ensure 'Allow Cortana' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowCortana
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v AllowCortana /t REG_DWORD /d 0 /f
+- id: 18.10.58.4
+  title: Ensure 'Allow Cortana above lock screen' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowCortanaAboveLock
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v AllowCortanaAboveLock /t REG_DWORD /d 0 /f
+- id: 18.10.58.5
+  title: Ensure Allow indexing of encrypted files is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowIndexingEncryptedStoresOrItems
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v AllowIndexingEncryptedStoresOrItems /t REG_DWORD /d 0 /f
+- id: 18.10.58.6
+  title: Ensure 'Allow search and Cortana to use location' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: AllowSearchToUseLocation
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v AllowSearchToUseLocation /t REG_DWORD /d 0 /f
+- id: 18.10.58.7
+  title: Ensure 'Allow search highlights' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windows Search
+    name: EnableDynamicContentInWSB
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windows Search'
+      /v EnableDynamicContentInWSB /t REG_DWORD /d 0 /f
+- id: 18.10.62.1
+  title: Ensure Turn off KMS Client Online AVS Validation is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Nt\Currentversion\Software Protection
+      Platform
+    name: NoGenTicket
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Nt\Currentversion\Software
+      Protection Platform' /v NoGenTicket /t REG_DWORD /d 1 /f
+- id: 18.10.65.1
+  title: Ensure 'Disable all apps from Microsoft Store' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\WindowsStore
+    name: DisableStoreApps
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\WindowsStore' /v DisableStoreApps
+      /t REG_DWORD /d 1 /f
+- id: 18.10.65.2
+  title: Ensure 'Only display the private store within the Microsoft Store' is set
+    to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\WindowsStore
+    name: RequirePrivateStoreOnly
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\WindowsStore' /v RequirePrivateStoreOnly
+      /t REG_DWORD /d 1 /f
+- id: 18.10.65.3
+  title: Ensure 'Turn off Automatic Download and Install of updates' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\WindowsStore
+    name: AutoDownload
+    value: 4
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\WindowsStore' /v AutoDownload
+      /t REG_DWORD /d 4 /f
+- id: 18.10.65.4
+  title: Ensure 'Turn off the offer to update to the latest version of Windows' is
+    set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\WindowsStore
+    name: DisableOSUpgrade
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\WindowsStore' /v DisableOSUpgrade
+      /t REG_DWORD /d 1 /f
+- id: 18.10.65.5
+  title: Ensure 'Turn off the Store application' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\WindowsStore
+    name: RemoveWindowsStore
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\WindowsStore' /v RemoveWindowsStore
+      /t REG_DWORD /d 1 /f
+- id: 18.10.71.1
+  title: Ensure 'Allow widgets' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Dsh
+    name: AllowNewsAndInterests
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Dsh' /v AllowNewsAndInterests
+      /t REG_DWORD /d 0 /f
+- id: 18.10.75.1.1
+  title: Ensure 'Automatic Data Collection' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WTDS\Components
+    name: CaptureThreatWindow
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WTDS\Components'
+      /v CaptureThreatWindow /t REG_DWORD /d 1 /f
+- id: 18.10.75.1.2
+  title: Ensure 'Notify Malicious' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WTDS\Components
+    name: NotifyMalicious
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WTDS\Components'
+      /v NotifyMalicious /t REG_DWORD /d 1 /f
+- id: 18.10.75.1.3
+  title: Ensure 'Notify Password Reuse' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WTDS\Components
+    name: NotifyPasswordReuse
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WTDS\Components'
+      /v NotifyPasswordReuse /t REG_DWORD /d 1 /f
+- id: 18.10.75.1.4
+  title: Ensure 'Notify Unsafe App' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WTDS\Components
+    name: NotifyUnsafeApp
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WTDS\Components'
+      /v NotifyUnsafeApp /t REG_DWORD /d 1 /f
+- id: 18.10.75.1.5
+  title: Ensure 'Service Enabled' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WTDS\Components
+    name: ServiceEnabled
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WTDS\Components'
+      /v ServiceEnabled /t REG_DWORD /d 1 /f
+- id: 18.10.75.2.1
+  title: Ensure Configure Windows Defender SmartScreen is set to Enabled Warn and
+    prevent bypass
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\System
+    name: EnableSmartScreen
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\System' /v EnableSmartScreen
+      /t REG_DWORD /d 1 /f
+- id: 18.10.77.1
+  title: Ensure 'Enables or disables Windows Game Recording and Broadcasting' is set
+    to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\GameDVR
+    name: AllowGameDVR
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\GameDVR' /v AllowGameDVR
+      /t REG_DWORD /d 0 /f
+- id: 18.10.78.1
+  title: 'Ensure ''Enable ESS with Supported Peripherals'' is set to ''Enabled: 1'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Policies\PassportForWork\Biometrics
+    name: EnableESSwithSupportedPeripherals
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Policies\PassportForWork\Biometrics'
+      /v EnableESSwithSupportedPeripherals /t REG_DWORD /d 1 /f
+- id: 18.10.79.1
+  title: Ensure 'Allow suggested apps in Windows Ink Workspace' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Policies\Microsoft\WindowsInkWorkspace
+    name: AllowSuggestedAppsInWindowsInkWorkspace
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Policies\Microsoft\WindowsInkWorkspace'
+      /v AllowSuggestedAppsInWindowsInkWorkspace /t REG_DWORD /d 0 /f
+- id: 18.10.79.2
+  title: 'Ensure ''Allow Windows Ink Workspace'' is set to ''Enabled: On, but disallow
+    access above lock'' OR ''Enabled: Disabled'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Policies\Microsoft\WindowsInkWorkspace
+    name: AllowWindowsInkWorkspace
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Policies\Microsoft\WindowsInkWorkspace'
+      /v AllowWindowsInkWorkspace /t REG_DWORD /d 1 /f
+- id: 18.10.80.1
+  title: Ensure 'Allow user control over installs' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Installer
+    name: EnableUserControl
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Installer' /v EnableUserControl
+      /t REG_DWORD /d 0 /f
+- id: 18.10.80.2
+  title: Ensure Always install with elevated privileges is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Installer
+    name: AlwaysInstallElevated
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Installer' /v AlwaysInstallElevated
+      /t REG_DWORD /d 0 /f
+- id: 18.10.80.3
+  title: Ensure Prevent Internet Explorer security prompt for Windows Installer scripts
+    is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Installer
+    name: SafeForScripting
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Installer' /v SafeForScripting
+      /t REG_DWORD /d 0 /f
+- id: 18.10.81.1
+  title: Ensure 'Enable MPR notifications for the system' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System
+    name: EnableMPR
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+      /v EnableMPR /t REG_DWORD /d 0 /f
+- id: 18.10.81.2
+  title: Ensure 'Sign-in and lock last interactive user automatically after a restart'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System
+    name: DisableAutomaticRestartSignOn
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System'
+      /v DisableAutomaticRestartSignOn /t REG_DWORD /d 1 /f
+- id: 18.10.86.1
+  title: Ensure 'Turn on PowerShell Script Block Logging' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
+    name: EnableScriptBlockLogging
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
+      /v EnableScriptBlockLogging /t REG_DWORD /d 1 /f
+- id: 18.10.86.2
+  title: Ensure 'Turn on PowerShell Transcription' is set to 'Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Powershell\Transcription
+    name: EnableTranscripting
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Powershell\Transcription'
+      /v EnableTranscripting /t REG_DWORD /d 1 /f
+- id: 18.10.88.1.1
+  title: Ensure Allow Basic authentication is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Client
+    name: AllowBasic
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Client' /v
+      AllowBasic /t REG_DWORD /d 0 /f
+- id: 18.10.88.1.2
+  title: Ensure Allow unencrypted traffic is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Client
+    name: AllowUnencryptedTraffic
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Client' /v
+      AllowUnencryptedTraffic /t REG_DWORD /d 0 /f
+- id: 18.10.88.1.3
+  title: Ensure Disallow Digest authentication is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Client
+    name: AllowDigest
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Client' /v
+      AllowDigest /t REG_DWORD /d 0 /f
+- id: 18.10.88.2.1
+  title: Ensure Allow Basic authentication is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Service
+    name: AllowBasic
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Service' /v
+      AllowBasic /t REG_DWORD /d 0 /f
+- id: 18.10.88.2.2
+  title: Ensure Allow remote server management through WinRM is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Service
+    name: AllowAutoConfig
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Service' /v
+      AllowAutoConfig /t REG_DWORD /d 0 /f
+- id: 18.10.88.2.3
+  title: Ensure Allow unencrypted traffic is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Service
+    name: AllowUnencryptedTraffic
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Service' /v
+      AllowUnencryptedTraffic /t REG_DWORD /d 0 /f
+- id: 18.10.88.2.4
+  title: Ensure Disallow WinRM from storing RunAs credentials is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Service
+    name: DisableRunAs
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Service' /v
+      DisableRunAs /t REG_DWORD /d 1 /f
+- id: 18.10.89.1
+  title: Ensure Allow Remote Shell Access is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Winrm\Service\Winrs
+    name: AllowRemoteShellAccess
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Winrm\Service\Winrs'
+      /v AllowRemoteShellAccess /t REG_DWORD /d 0 /f
+- id: 18.10.90.1
+  title: Ensure 'Allow clipboard sharing with Windows Sandbox' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Sandbox
+    name: AllowClipboardRedirection
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Sandbox' /v AllowClipboardRedirection
+      /t REG_DWORD /d 0 /f
+- id: 18.10.90.2
+  title: Ensure 'Allow networking in Windows Sandbox' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Sandbox
+    name: AllowNetworking
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Sandbox' /v AllowNetworking
+      /t REG_DWORD /d 0 /f
+- id: 18.10.91.2.1
+  title: Ensure Prevent users from modifying settings is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows Defender Security Center\App and
+      Browser protection
+    name: DisallowExploitProtectionOverride
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows Defender Security
+      Center\App and Browser protection' /v DisallowExploitProtectionOverride /t REG_DWORD
+      /d 1 /f
+- id: 18.10.92.1.1
+  title: Ensure No auto-restart with logged on users for scheduled automatic updates
+    installations is set to Disabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au
+    name: NoAutoRebootWithLoggedOnUsers
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au'
+      /v NoAutoRebootWithLoggedOnUsers /t REG_DWORD /d 0 /f
+- id: 18.10.92.2.1
+  title: Ensure Configure Automatic Updates is set to Enabled
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au
+    name: NoAutoUpdate
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au'
+      /v NoAutoUpdate /t REG_DWORD /d 0 /f
+- id: 18.10.92.2.2
+  title: 'Ensure ''Configure Automatic Updates: Scheduled install day'' is set to
+    ''0 - Every day'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au
+    name: ScheduledInstallDay
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\Windowsupdate\Au'
+      /v ScheduledInstallDay /t REG_DWORD /d 0 /f
+- id: 18.10.92.2.3
+  title: Ensure 'Enable features introduced via servicing that are off by default'
+    is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+    name: AllowTemporaryEnterpriseFeatureControl
+    value: 0
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate' /v
+      AllowTemporaryEnterpriseFeatureControl /t REG_DWORD /d 0 /f
+- id: 18.10.92.2.4
+  title: Ensure 'Remove access to “Pause updates” feature' is set to 'Enabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+    name: SetDisablePauseUXAccess
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate' /v
+      SetDisablePauseUXAccess /t REG_DWORD /d 1 /f
+- id: 18.10.92.4.1
+  title: Ensure 'Manage preview builds' is set to 'Disabled'
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+    name: ManagePreviewBuildsPolicyValue
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate' /v
+      ManagePreviewBuildsPolicyValue /t REG_DWORD /d 1 /f
+- id: 18.10.92.4.2
+  title: 'Ensure ''Select when Preview Builds and Feature Updates are received'' is
+    set to ''Enabled: 180 or more days'''
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate
+    name: DeferFeatureUpdates
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate' /v
+      DeferFeatureUpdates /t REG_DWORD /d 1 /f
+- id: 18.10.92.4.3
+  title: Ensure Select when Quality Updates are received is set to Enabled 0 days
+  section: '18'
+  severity: medium
+  level: 1
+  profile: ''
+  check:
+    type: registry
+    key: HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate
+    name: DeferQualityUpdates
+    value: 1
+  remediation:
+    powershell: reg add 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' /v
+      DeferQualityUpdates /t REG_DWORD /d 1 /f

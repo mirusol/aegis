@@ -1,0 +1,4 @@
+---
+- name: Apply the CIS remediations on Windows
+  ansible.builtin.include_tasks: windows.yml
+  when: ansible_facts['os_family'] == 'Windows'
